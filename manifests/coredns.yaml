@@ -106,7 +106,7 @@ spec:
         beta.kubernetes.io/os: linux
       containers:
       - name: coredns
-        image: rancher/coredns-coredns:1.6.3
+        image: knovus/coredns:1.6.9
         imagePullPolicy: IfNotPresent
         resources:
           limits:
@@ -143,20 +143,18 @@ spec:
             port: 8080
             scheme: HTTP
           initialDelaySeconds: 60
-          periodSeconds: 10
-          timeoutSeconds: 1
+          timeoutSeconds: 5
           successThreshold: 1
-          failureThreshold: 3
+          failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /ready
             port: 8181
             scheme: HTTP
-          initialDelaySeconds: 0
-          periodSeconds: 2
-          timeoutSeconds: 1
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
           successThreshold: 1
-          failureThreshold: 3
+          failureThreshold: 5
       dnsPolicy: Default
       volumes:
         - name: config-volume

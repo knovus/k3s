@@ -85,7 +85,7 @@ var (
 		Name:        "pause-image",
 		Usage:       "(agent/runtime) Customized pause image for containerd or docker sandbox",
 		Destination: &AgentConfig.PauseImage,
-		Value:       "docker.io/rancher/pause:3.1",
+		Value:       "docker.io/knovus/pause:3.3",
 	}
 	FlannelFlag = cli.BoolFlag{
 		Name:        "no-flannel",
