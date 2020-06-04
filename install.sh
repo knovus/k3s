@@ -84,9 +84,10 @@ set -e
 #     Channel to use for fetching k3s download URL.
 #     Defaults to 'stable'.
 
-GITHUB_URL=https://github.com/rancher/k3s/releases
-STORAGE_URL=https://storage.googleapis.com/k3s-ci-builds
+GITHUB_URL=https://github.com/knovus/k3s/releases
+STORAGE_URL=#https://storage.googleapis.com/k3s-ci-builds
 DOWNLOADER=
+INSTALL_K3S_VERSION=v1.18.3+k3s1
 
 # --- helper functions for logs ---
 info()
@@ -263,25 +264,9 @@ setup_verify_arch() {
         ARCH=$(uname -m)
     fi
     case $ARCH in
-        amd64)
-            ARCH=amd64
-            SUFFIX=
-            ;;
-        x86_64)
-            ARCH=amd64
-            SUFFIX=
-            ;;
-        arm64)
-            ARCH=arm64
+        i686)
+            ARCH=386
             SUFFIX=-${ARCH}
-            ;;
-        aarch64)
-            ARCH=arm64
-            SUFFIX=-${ARCH}
-            ;;
-        arm*)
-            ARCH=arm
-            SUFFIX=-${ARCH}hf
             ;;
         *)
             fatal "Unsupported architecture $ARCH"
