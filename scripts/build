@@ -103,6 +103,14 @@ if [ ! -x ${INSTALLBIN}/cni ]; then
     GOPATH=$TMPDIR CGO_ENABLED=0 "${GO}" build -tags "$TAGS" -ldflags "$LDFLAGS $STATIC" -o $INSTALLBIN/cni
 )
 fi
+echo Building statics
+mkdir -p build/data
+go run pkg/codegen/cleanup/main.go
+/bin/rm -rf pkg/generated
+go run pkg/codegen/main.go
+go fmt pkg/deploy/zz_generated_bindata.go
+go fmt pkg/static/zz_generated_bindata.go
+
 # echo Building agent
 # CGO_ENABLED=1 "${GO}" build -tags "$TAGS" -ldflags "$VERSIONFLAGS $LDFLAGS $STATIC" -o bin/k3s-agent ./cmd/agent/main.go
 echo Building server

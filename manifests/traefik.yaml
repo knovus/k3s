@@ -6,17 +6,9 @@ metadata:
 spec:
   chart: https://%{KUBERNETES_API}%/static/charts/traefik-v8.2.1.tgz
   valuesContent: |-
-    # rbac:
-    #   enabled: true
-    # ssl:
-    #   enabled: true
-    # metrics:
-    #   prometheus:
-    #     enabled: true
-    # kubernetes:
-    #   ingressEndpoint:
-    #     useDefaultPublishedService: true
-    # image: "rancher/library-traefik"
+    image:
+      name: knovus/traefik
+      tag: v2.2.1
     tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
