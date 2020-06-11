@@ -745,6 +745,7 @@ service_enable_and_start() {
 
     [ "${HAS_SYSTEMD}" = true ] && systemd_start
     [ "${HAS_OPENRC}" = true ] && openrc_start
+    info "Done!"
     return 0
 }
 
